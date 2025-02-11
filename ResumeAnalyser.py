@@ -1,9 +1,8 @@
 import streamlit as st
 import time
 import requests
+from google import genai
 from pypdf import PdfReader
-import google.generativeai as genai
-
 
 
 
@@ -53,10 +52,9 @@ def AI(resume_text, job_title, company_name):
 
     Be strict in acceptance probability calculation.
     """
-    genai.configure(api_key="AIzaSyDAlgnjMS54hi0S1zbbhScRi5BYZZ1dLVU")
 
-    
-    response = genai.generate_content(
+    client = genai.Client(api_key="AIzaSyDAlgnjMS54hi0S1zbbhScRi5BYZZ1dLVU")  # Move to st.secrets for security
+    response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt
     )
@@ -64,7 +62,7 @@ def AI(resume_text, job_title, company_name):
     response_text = response.text.replace("*", "")
 
     # Generating job suggestions
-    response2 = genai.generate_content(
+    response2 = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=f"This was the analysis {response_text} Now suggest 5 more related jobs and why."
     )
