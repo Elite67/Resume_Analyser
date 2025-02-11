@@ -96,6 +96,10 @@ if resume:
     resume_text = reader.pages[0].extract_text()
 
     st.success("✅ Resume Uploaded!")
+    content_placeholder = st.empty()
+
+    
+    content_placeholder.text("Generating Content... Please wait.")
 
     # AI Analysis
     result, result2 = AI(resume_text, job_title, company_name)
@@ -111,6 +115,7 @@ if resume:
         for chunk in result.splitlines():
             st.write(chunk)
             time.sleep(0.5)  # Streaming effect
+        content_placeholder.text("Content Generated!")
 
     with tab2:
         st.header("🌎 Job Reviews from the Web")
