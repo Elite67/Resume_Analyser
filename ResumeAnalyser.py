@@ -1,8 +1,9 @@
 import streamlit as st
 import time
 import requests
-from pypdf import PdfReader
 from google import genai
+from pypdf import PdfReader
+
 
 
 # SerpAPI for fetching job reviews
