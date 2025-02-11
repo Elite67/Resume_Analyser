@@ -1,5 +1,5 @@
-pip install streamlit
-pip install time
-pip install requests
-pip install pypdf
-pip install -U google-generativeai
+streamlit
+time
+requests
+pypdf
+google-generativeai
