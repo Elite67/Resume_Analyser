@@ -2,7 +2,8 @@ import streamlit as st
 import time
 import requests
 from pypdf import PdfReader
-from google import genai
+import google.generativeai as genai
+
 
 
 
