@@ -1,0 +1,5 @@
+streamlit
+time
+requests
+pypdf
+google-generativeai
