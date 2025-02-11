@@ -56,7 +56,7 @@ def AI(resume_text, job_title, company_name):
     genai.configure(api_key="AIzaSyDAlgnjMS54hi0S1zbbhScRi5BYZZ1dLVU")
 
     
-    response = client.models.generate_content(
+    response = genai.generate_content(
         model="gemini-2.0-flash",
         contents=prompt
     )
@@ -64,7 +64,7 @@ def AI(resume_text, job_title, company_name):
     response_text = response.text.replace("*", "")
 
     # Generating job suggestions
-    response2 = client.models.generate_content(
+    response2 = genai.generate_content(
         model="gemini-2.0-flash",
         contents=f"This was the analysis {response_text} Now suggest 5 more related jobs and why."
     )
