@@ -1,4 +1,0 @@
-streamlit
-requests
-pypdf
-pip install google-generativeai
