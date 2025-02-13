@@ -54,7 +54,7 @@ def AI(resume_text, job_title, company_name):
     Be strict in acceptance probability calculation.
     """
 
-    client = genai.Client(api_key="AIzaSyDAlgnjMS54hi0S1zbbhScRi5BYZZ1dLVU")  # Move to st.secrets for security
+    client = genai.Client(api_key="AIzaSyDAlgnjMS54hi0S1zbbhScRi5BYZZ1dLVU")  
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt
