@@ -8,7 +8,7 @@ from google import genai
 
 
 # SerpAPI for fetching job reviews
-SERP_API_KEY = "20bcd02bdd65e4daa468dd8869b43cfb26b08aebc22dbedbc07de39a7d63b33e"  # Move to st.secrets for security
+SERP_API_KEY = "20bcd02bdd65e4daa468dd8869b43cfb26b08aebc22dbedbc07de39a7d63b33e"  
 
 def get_job_reviews(job_title, company_name):
     """Fetch job reviews using SerpAPI from Glassdoor, Indeed, and other sources."""
