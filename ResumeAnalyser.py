@@ -122,7 +122,7 @@ if resume:
     job_reviews = get_job_reviews(job_title, company_name)
 
     # Tabs
-    tab1, tab2, tab3, tab4,tab5 = st.tabs(["📊 Analyzed Resume", "🌎 Job Reviews", "🔎 General Suggested Jobs","Suggested Roles within the same Company","Suggested Roles within different Companies"])
+    tab1, tab2, tab3, tab4,tab5 = st.tabs(["📊 Analyzed Resume", "🌎 Job Reviews", "🔎 General Suggested Jobs","🔎 Suggested Roles within the same Company","🔎 Suggested Roles within different Companies"])
 
     with tab1:
         st.header("📊 Resume Analysis")
