@@ -69,7 +69,21 @@ def AI(resume_text, job_title, company_name):
     )
     
     response2_text = response2.text.replace("*", "")
-    return response_text, response2_text
+
+    response3 = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=f"Based on the analysis {response_text} You are a professional career advisor. I will provide my resume. Based on it, analyze my skills, experience, and qualifications. Suggest suitable job roles within the same company.For each role, include:Job TitleShort Description of the roleWhy it matches my experience (based on resume keywords, skills, and achievements) "
+    )
+    response3_text = response3.text.replace("*", "")
+
+    response4 = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=f"Based on the analysis {response_text} You are an expert career advisor and job role recommender. I will provide my resume. Analyze my skills, experience, and qualifications, then suggest suitable job roles across different companies.For each suggestion, include:Company NameJob TitleShort Description of the roleWhy it fits my experience and skillset"
+    )
+    response4_text = response4.text.replace("*", "")
+
+
+    return response_text, response2_text, response3_text, response4_text
 
 
 # Streamlit UI
@@ -102,13 +116,13 @@ if resume:
     content_placeholder.text("Generating Content... Please wait.")
 
     # AI Analysis
-    result, result2 = AI(resume_text, job_title, company_name)
+    result, result2, result3, result4 = AI(resume_text, job_title, company_name)
 
     # Fetch Job Reviews
     job_reviews = get_job_reviews(job_title, company_name)
 
     # Tabs
-    tab1, tab2, tab3 = st.tabs(["📊 Analyzed Resume", "🌎 Job Reviews", "🔎 Suggested Jobs"])
+    tab1, tab2, tab3, tab4,tab5 = st.tabs(["📊 Analyzed Resume", "🌎 Job Reviews", "🔎 General Suggested Jobs","Suggested Roles within the same Company","Suggested Roles within different Companies"])
 
     with tab1:
         st.header("📊 Resume Analysis")
@@ -127,3 +141,15 @@ if resume:
         for chunk in result2.splitlines():
             st.write(chunk)
             time.sleep(0.5)
+
+    with tab4:
+        st.header("🔎 Suggested Roles within the same Company")
+        for chunk in result3.splitlines():
+            st.write(chunk)
+            time.sleep(0.5)
+    with tab5:
+        st.header("🔎 Suggested Roles within different Companies")
+        for chunk in result4.splitlines():
+            st.write(chunk)
+            time.sleep(0.5)
+    
