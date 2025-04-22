@@ -72,13 +72,13 @@ def AI(resume_text, job_title, company_name):
 
     response3 = client.models.generate_content(
         model="gemini-2.0-flash",
-        contents=f"Based on the analysis {response_text} You are a professional career advisor. I will provide my resume. Based on it, analyze my skills, experience, and qualifications. Suggest suitable job roles within the same company.For each role, include:Job TitleShort Description of the roleWhy it matches my experience (based on resume keywords, skills, and achievements) "
+        contents=f"Based on the analysis {response_text} {resume_text}You are a professional career advisor. I will provide my resume. Based on it, analyze my skills, experience, and qualifications. Suggest suitable job roles within the same company.For each role, include:Job TitleShort Description of the roleWhy it matches my experience (based on resume keywords, skills, and achievements) "
     )
     response3_text = response3.text.replace("*", "")
 
     response4 = client.models.generate_content(
         model="gemini-2.0-flash",
-        contents=f"Based on the analysis {response_text} You are an expert career advisor and job role recommender. I will provide my resume. Analyze my skills, experience, and qualifications, then suggest suitable job roles across different companies.For each suggestion, include:Company NameJob TitleShort Description of the roleWhy it fits my experience and skillset"
+        contents=f"Based on the analysis {response_text} {resume_text} You are an expert career advisor and job role recommender. I will provide my resume. Analyze my skills, experience, and qualifications, then suggest suitable job roles across different companies.For each suggestion, include:Company NameJob TitleShort Description of the roleWhy it fits my experience and skillset"
     )
     response4_text = response4.text.replace("*", "")
 
